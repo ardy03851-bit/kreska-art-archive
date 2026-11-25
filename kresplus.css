@@ -1,55 +1,771 @@
-/* kres+ — glassmorphic skin with thin gradient outlines (mod of KRESKA.art) */
-:root{
-  --kp-grad: linear-gradient(135deg,#6ee7f9 0%,#a78bfa 50%,#f472b6 100%);
-  --kp-glass: rgba(30,32,48,.42);
-  --kp-glass-hi: rgba(255,255,255,.08);
-  --kp-blur: blur(18px) saturate(160%);
+/*
+ * kres+ studio skin
+ * The artwork stays untouched; only the surrounding controls are restyled.
+ * Every glass edge fades out toward its lower-left corner.
+ */
+:root {
+  --studio-text: #e4e9ed;
+  --studio-muted: #a5b1bd;
+  --studio-icon: #d6dfe5;
+  --studio-surface: rgba(31, 38, 47, 0.78);
+  --studio-inset: rgba(12, 18, 25, 0.32);
+  --studio-control: rgba(225, 235, 242, 0.055);
+  --studio-control-hover: rgba(225, 235, 242, 0.12);
+  --studio-active: rgba(122, 151, 174, 0.32);
+  --studio-active-strong: rgba(114, 147, 174, 0.46);
+  --studio-active-text: #f4f8fa;
+  --studio-wheel-center: #202832;
+  --studio-outline: linear-gradient(45deg,
+      transparent 2%,
+      rgba(171, 190, 204, 0.045) 23%,
+      rgba(182, 204, 218, 0.28) 67%,
+      rgba(224, 214, 205, 0.42) 100%);
+  --studio-shadow: 0 12px 34px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  --studio-blur: blur(24px) saturate(125%);
 }
-body, body.app{
-  background-color:#10121c !important;
+
+/* The archived document had a zero-height root, which hid its background. */
+html {
+  height: 100%;
+}
+
+body.app {
+  height: 100%;
+  color: var(--studio-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #171b21 !important;
   background-image:
-    radial-gradient(900px 600px at 15% 10%,rgba(110,231,249,.18),transparent 60%),
-    radial-gradient(800px 600px at 90% 20%,rgba(167,139,250,.20),transparent 60%),
-    radial-gradient(900px 700px at 50% 100%,rgba(244,114,182,.16),transparent 60%) !important;
-  background-repeat:no-repeat !important;
+    radial-gradient(ellipse 76% 72% at 82% 13%, rgba(100, 122, 143, 0.19), transparent 65%),
+    radial-gradient(ellipse 60% 70% at 18% 100%, rgba(125, 105, 112, 0.12), transparent 67%),
+    linear-gradient(145deg, #222830 0%, #191e25 48%, #14181e 100%) !important;
+  background-repeat: no-repeat !important;
 }
-/* gradient hairline ring (mask technique keeps the glass see-through) */
-.menu-button:not(.donate)::before,.container-button::before,.modal::before,#welcome::before,
-#modal_menu::before,#colorfloat::before,#guides_container::before,#font_container::before,#imagefloat::before,.menu-button.donate::before{
-  content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
-  background:var(--kp-grad);
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;
+
+body.app.light {
+  --studio-text: #263540;
+  --studio-muted: #617380;
+  --studio-icon: #344957;
+  --studio-surface: rgba(232, 239, 241, 0.79);
+  --studio-inset: rgba(113, 134, 148, 0.10);
+  --studio-control: rgba(255, 255, 255, 0.42);
+  --studio-control-hover: rgba(255, 255, 255, 0.72);
+  --studio-active: rgba(112, 151, 176, 0.25);
+  --studio-active-strong: rgba(106, 149, 177, 0.40);
+  --studio-active-text: #203947;
+  --studio-wheel-center: #dbe4e8;
+  --studio-outline: linear-gradient(45deg,
+      transparent 2%,
+      rgba(96, 120, 136, 0.045) 23%,
+      rgba(93, 124, 142, 0.24) 67%,
+      rgba(255, 255, 255, 0.86) 100%);
+  --studio-shadow: 0 12px 34px rgba(54, 71, 82, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  background-color: #d5dfe2 !important;
+  background-image:
+    radial-gradient(ellipse 76% 72% at 82% 13%, rgba(255, 255, 255, 0.64), transparent 65%),
+    radial-gradient(ellipse 65% 70% at 12% 100%, rgba(152, 178, 186, 0.26), transparent 68%),
+    linear-gradient(145deg, #dce5e7 0%, #cbd8dd 100%) !important;
 }
-.menu-button,.container-button{position:relative;}
-#welcome,.modal,#modal_menu,#colorfloat,#guides_container,#font_container,#imagefloat{
-  background:var(--kp-glass) !important;border:0 !important;border-radius:18px !important;
-  -webkit-backdrop-filter:var(--kp-blur);backdrop-filter:var(--kp-blur);
-  box-shadow:0 8px 32px rgba(0,0,0,.35), inset 0 1px 0 var(--kp-glass-hi) !important;
+
+/* Glass shells. The separate masked hairline preserves the transparency of the fill. */
+body.app :is(.nav-group, #second_row, #altbtns, #logo_btn, #ui_show_btn,
+  #nav_toggle_sm, #modals, #font, #guides, #welcome, #colorfloat, #imagefloat,
+  #brush_preview_wrapper, #feedback, #sizeLabel, #perspective_status, #controls #drag) {
+  background-color: var(--studio-surface);
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.045), transparent 60%);
+  border: 0;
+  box-shadow: var(--studio-shadow);
+  -webkit-backdrop-filter: var(--studio-blur);
+  backdrop-filter: var(--studio-blur);
 }
-.menu-button:not(.primary):not(.secondary):not(.tertiary):not(.donate),
-.container-button:not(.primary):not(.secondary){
-  background:rgba(255,255,255,.06) !important;border:0 !important;border-radius:999px !important;
-  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+
+body.app :is(.nav-group, #second_row, #altbtns, #logo_btn, #ui_show_btn,
+  #nav_toggle_sm, #modals, #font, #guides, #welcome, #colorfloat, #imagefloat,
+  #brush_preview_wrapper, #feedback, #sizeLabel, #perspective_status, #controls #drag,
+  .modal, .menu-button:not(.new),
+  .container-button:not(.new))::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: var(--studio-outline);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
 }
-.menu-button.primary,.menu-button.secondary,.menu-button.tertiary,.primary{
-  background:linear-gradient(135deg,rgba(79,70,229,.32),rgba(124,58,237,.28)) !important;
-  border:0 !important;border-radius:999px !important;
+
+/* Workspace and floating tool rails */
+#easel {
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.15);
 }
-.menu-button.donate{background:rgba(123,176,224,.12) !important;border:0 !important;border-radius:999px !important;}
-.btn{transition:background .25s ease;}
-.menu-button:hover{box-shadow:0 0 18px rgba(167,139,250,.35);}
-.btn{border-radius:14px !important;}
-.btn:hover{background:rgba(255,255,255,.07);}
-.collapsible{
-  color:#c4b5fd !important;border-bottom:1px solid transparent !important;
-  border-image:var(--kp-grad) 1 !important;
+
+#first_row {
+  margin-left: 65px;
 }
-/* credits */
-.kp-credits{text-align:center;padding:6px 4px 14px;font-size:14px;line-height:1.5;color:#e6e6f0;}
-.kp-credits p{margin:6px 0;}
-.kp-credits a.menu-button{display:block;text-decoration:none;color:#fff;user-select:auto;touch-action:manipulation;}
-.kp-credits a{color:#a5f3fc;user-select:auto;touch-action:manipulation;}
-.kp-credits .kp-note{font-size:13px;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(167,139,250,.55);color:#e6e6f0;}
-.kp-credits h4{margin:14px 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;}
-::-webkit-scrollbar-thumb{background:linear-gradient(#a78bfa,#6ee7f9) !important;border-radius:8px;}
+
+#first_row.right {
+  margin-left: 0;
+  margin-right: 65px;
+}
+
+body.app .nav-group {
+  margin: 8px 0 0 8px;
+  padding: 2px 5px;
+  border-radius: 16px;
+}
+
+body.app #logo_btn {
+  top: 8px;
+  left: 8px;
+  height: 72px;
+  border-radius: 16px;
+  color: var(--studio-text);
+}
+
+body.app #logo_btn.right {
+  left: auto;
+  right: 8px;
+}
+
+body.app #ui_show_btn {
+  height: 72px;
+  margin: 8px;
+  border-radius: 16px;
+  opacity: 0.9;
+}
+
+body.app #ui_show.right #ui_show_btn {
+  float: right;
+}
+
+body.app #ui_show_btn .icon {
+  bottom: 0;
+  width: 37px;
+  height: 30px;
+}
+
+#logo_btn .icon {
+  width: 37px;
+  height: 30px;
+}
+
+#ver_label {
+  color: var(--studio-muted);
+  font-size: 9px;
+  letter-spacing: 0.01em;
+}
+
+body.app #second_row {
+  top: 90px;
+  left: 8px;
+  bottom: 10px;
+  height: auto;
+  padding-top: 8px;
+  border-radius: 17px;
+}
+
+body.app #second_row.right {
+  left: auto;
+  right: 8px;
+}
+
+body.app #second_row #add_ref,
+body.app #second_row #peek_btn {
+  left: 0;
+  width: 46px;
+  height: 62px;
+  margin: 8px 2px;
+  border: 0;
+  border-radius: 12px;
+  background-color: var(--studio-control);
+  box-shadow: none;
+}
+
+#second_row #undo_btn,
+#second_row #redo_btn,
+#second_row #layer_clear_btn {
+  width: 46px;
+  margin: 0 2px;
+}
+
+body.app #altbtns {
+  position: relative;
+  margin-bottom: max(8px, env(safe-area-inset-bottom));
+  padding: 2px 5px;
+  border-radius: 17px;
+}
+
+body.app #altbtns [data-tool="add_ref"],
+body.app #altbtns [data-tool="peekcontrol"] {
+  width: 50px;
+  height: 62px;
+  margin: 3px 2px;
+  border: 0;
+  border-radius: 12px;
+  background-color: var(--studio-control);
+}
+
+/* Buttons retain their original hit areas and active/off classes. */
+body.app .btn,
+body.app .pebble {
+  color: var(--studio-text);
+  border-radius: 11px;
+  transition: background-color 150ms ease, box-shadow 150ms ease;
+}
+
+body.app .icon,
+body.app .on.off .icon,
+body.app #controls .icon {
+  fill: var(--studio-icon);
+}
+
+body.app .nav-group .icon,
+body.app #second_row .icon,
+body.app #altbtns .icon {
+  width: 25px;
+  height: 25px;
+  bottom: 7px;
+}
+
+body.app .nav-group .label,
+body.app #second_row .label,
+body.app #altbtns .label {
+  color: var(--studio-muted);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+body.app :is(.btn, .pebble).on:not(.off) {
+  background-color: var(--studio-active-strong);
+  color: var(--studio-active-text);
+  box-shadow: inset 0 0 0 1px rgba(186, 207, 219, 0.18);
+}
+
+body.app :is(.btn, .pebble).on:not(.off) .icon {
+  fill: var(--studio-active-text);
+}
+
+body.app :is(.btn, .pebble).on:not(.off) .label {
+  color: var(--studio-active-text);
+}
+
+/* The archive gave inactive tabs solid gray/white fills, and used a nearly
+   black brush tab in the light theme. Keep both states legible on glass. */
+body.app :is(#first_row, #modal_menu) .btn.on.off {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+body.app #modal_menu.modal_toggle .btn.on:not(.off) {
+  background-color: var(--studio-active-strong);
+}
+
+body.app.light .primary .icon {
+  fill: var(--studio-icon);
+}
+
+body.app :is(#first_row .btn:not(#color_btn), #second_row .btn, #altbtns .btn,
+  #modals .btn, .quick-btn, .layer-button, .container-button, .menu-button):hover {
+  background-color: var(--studio-control-hover);
+}
+
+/* The colour button is a live swatch: do not replace its dynamically set colour. */
+#color_btn {
+  box-shadow: inset 0 0 0 1px rgba(214, 225, 233, 0.22);
+}
+
+body.app .nav-group #color_btn .label {
+  color: inherit;
+}
+
+body.app :is(.vertical-slider .slider-flame, .horizontal-slider .slider-flame) {
+  background-color: rgba(134, 162, 181, 0.27);
+}
+
+body.app .horizontal-slider,
+body.app #main_slider.vertical-slider {
+  background-color: var(--studio-control);
+  border-radius: 13px;
+}
+
+body.app .slider-flame {
+  border-radius: 12px;
+}
+
+body.app .slider-thumb {
+  color: var(--studio-text);
+  background-color: var(--studio-surface);
+  border: 1px solid rgba(201, 218, 228, 0.24);
+  border-radius: 10px;
+  font-size: 13px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
+}
+
+body.app.light .slider-thumb {
+  border-color: rgba(96, 124, 142, 0.24);
+}
+
+/* Panels, tabs and their nested surfaces */
+body.app #modals {
+  top: 90px;
+  bottom: 10px;
+  left: 73px;
+  border-radius: 19px;
+  color: var(--studio-text);
+}
+
+body.app #ui.right ~ #modals {
+  left: auto;
+  right: 73px;
+}
+
+body.app :is(#font, #guides, #welcome, #colorfloat, #imagefloat) {
+  border-radius: 18px;
+  color: var(--studio-text);
+}
+
+body.app #guides_container,
+body.app #font_container {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+body.app :is(.modal, #font_inner, #guides_inner, #welcome_inner) {
+  background: var(--studio-inset);
+  border: 0;
+  border-radius: 14px;
+  box-shadow: none;
+  color: var(--studio-text);
+}
+
+body.app #welcome_inner {
+  line-height: 1.5;
+}
+
+body.app :is(#modal_title, #welcome_title, #colorfloat_title, #imagefloat_title,
+  #font_title, #guides_title) {
+  color: var(--studio-text);
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+
+#modal_menu {
+  padding-left: 15px;
+}
+
+body.app #modal_menu .btn {
+  border-radius: 10px;
+}
+
+body.app #modal_menu .icon {
+  width: 24px;
+  height: 24px;
+}
+
+body.app .quick-btn,
+body.app .round-btn:not(#checkerboard-btn):not(#checkerboard-color-btn):not(#dual-color-btn):not(#cflt-dual-color-btn),
+body.app #modals :is(#values, #wand, #dropper, #fill),
+body.app .layer-button,
+body.app #btn_add_layer,
+body.app .menu_group,
+body.app .wrap,
+body.app .miniature {
+  background-color: var(--studio-control);
+  color: var(--studio-text);
+  border-radius: 11px;
+}
+
+body.app #menu_inner .quick-btn .icon {
+  width: 24px;
+  height: 24px;
+}
+
+body.app .miniature.highlight,
+body.app .wrap.highlight,
+body.app .brushes-buttons.highlight,
+body.app .layer-button.highlight {
+  background-color: var(--studio-active);
+  color: var(--studio-text);
+  box-shadow: inset 0 0 0 1px rgba(178, 204, 219, 0.25);
+}
+
+body.app .brushes-buttons {
+  border-radius: 11px;
+  color: var(--studio-text);
+  text-shadow: none;
+}
+
+body.app .miniature {
+  text-shadow: none;
+}
+
+body.app .tilt::after {
+  background: var(--studio-inset);
+  color: var(--studio-muted);
+  font-size: 11px;
+  font-style: normal;
+  padding: 3px 6px;
+  border-radius: 5px;
+}
+
+body.app :is(.menu-button, .container-button) {
+  position: relative;
+  color: var(--studio-text);
+  background-color: var(--studio-control);
+  border: 0;
+  border-radius: 11px;
+  transition: background-color 150ms ease, box-shadow 150ms ease;
+}
+
+body.app :is(.menu-button, .container-button).primary {
+  background-color: var(--studio-active);
+  color: var(--studio-text);
+  font-weight: 650;
+}
+
+body.app .menu-button.secondary.red {
+  box-shadow: inset 0 0 0 1px rgba(201, 132, 132, 0.4);
+}
+
+body.app #menu .menu-button:not(.hidden) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  min-height: 41px;
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.3;
+  text-align: left;
+}
+
+body.app #menu_inner .menu-button .icon {
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+}
+
+body.app.safari #menu .hide-safari {
+  display: none;
+}
+
+body.app .collapsible {
+  padding: 10px 0;
+  color: var(--studio-muted);
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent, rgba(174, 198, 213, 0.32)) 1;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+body.app .new::before {
+  background: rgba(117, 146, 164, 0.38);
+  color: var(--studio-text);
+  font-size: 10px;
+  font-weight: 650;
+  border-radius: 5px;
+  transform: none;
+}
+
+body.app .menu-button.new::before {
+  top: 50%;
+  right: 9px;
+  transform: translateY(-50%);
+}
+
+body.app hr {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(174, 198, 213, 0.2), transparent);
+  margin: 13px 50px;
+}
+
+body.app .toggle {
+  background-color: var(--studio-inset);
+  color: var(--studio-text);
+  border-radius: 12px;
+}
+
+body.app .togglethumb,
+body.app .toggle.off .togglethumb {
+  color: var(--studio-text);
+  background-color: var(--studio-active);
+  border-radius: 9px;
+  font-weight: 600;
+}
+
+body.app .toggle.off .togglethumb {
+  background-color: var(--studio-control);
+}
+
+body.app .center-cover {
+  background-color: var(--studio-wheel-center);
+}
+
+body.app .swatch {
+  border-radius: 7px;
+  box-shadow: inset 0 0 0 2px var(--studio-inset);
+}
+
+body.app .swatch.selected {
+  transform: scale(1.12);
+  border-radius: 8px;
+  outline: 2px solid var(--studio-text);
+  outline-offset: -2px;
+}
+
+/* Contextual toolbars and the floating toolkit use the same visual language. */
+body.app :is(.selection, #drawback, .btn.tools, #bgrtoolfloat, #vertical_flip,
+  #horizontal_flip, #ar_close, #snapshot, #ui_hide_btn, #add_still, #togglebgrcamera) {
+  background-color: var(--studio-surface);
+  border: 0;
+  border-radius: 12px;
+  box-shadow: var(--studio-shadow);
+  color: var(--studio-text);
+  -webkit-backdrop-filter: var(--studio-blur);
+  backdrop-filter: var(--studio-blur);
+}
+
+body.app #controls #drag {
+  border-radius: 24px;
+}
+
+body.app #controls .pebble:not(#drag) {
+  background-color: var(--studio-control);
+  color: var(--studio-text);
+  box-shadow: inset 0 0 0 1px rgba(190, 211, 223, 0.10);
+}
+
+body.app #controls .pebble.on:not(.off):not(#drag) {
+  background-color: var(--studio-active-strong);
+}
+
+body.app .key {
+  color: var(--studio-text);
+  background-color: var(--studio-inset);
+}
+
+body.app :is(#feedback, #sizeLabel, #perspective_status, #pin .label) {
+  color: var(--studio-text);
+  border-radius: 12px;
+}
+
+body.app #pin .label,
+body.app #needle {
+  background-color: var(--studio-surface);
+  box-shadow: var(--studio-shadow);
+  -webkit-backdrop-filter: var(--studio-blur);
+  backdrop-filter: var(--studio-blur);
+}
+
+body.app .overlay {
+  background-color: rgba(16, 22, 28, 0.78);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+body.app .overlay button {
+  border: 1px solid rgba(200, 217, 226, 0.22);
+  border-radius: 11px;
+  background: rgba(222, 233, 239, 0.1);
+}
+
+/* Loading and recovery screens also belong to the same interface. They stay
+   dark in both themes so their existing white status text remains readable. */
+body.app #preloader {
+  background: radial-gradient(ellipse at 70% 20%, #303b46, #171d24 72%);
+  color: #e4e9ed;
+}
+
+body.app #errorOverlay {
+  background: rgba(16, 22, 28, 0.86);
+  color: #e4e9ed;
+  justify-content: flex-start;
+  justify-content: safe center;
+}
+
+body.app #errorOverlay > * {
+  flex-shrink: 0;
+}
+
+body.app #errorOverlay * {
+  touch-action: auto;
+}
+
+body.app #errorOverlay .error-details {
+  background: rgba(10, 16, 22, 0.5);
+  color: #ffb6b6;
+  border: 1px solid rgba(225, 168, 168, 0.24);
+  border-radius: 12px;
+}
+
+body.app #errorOverlay .overlay-actions button,
+body.app :is(#restore, #glrestore, #errorRestore) {
+  color: #e4e9ed;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: linear-gradient(rgba(42, 53, 63, 0.8), rgba(42, 53, 63, 0.8)) padding-box,
+    linear-gradient(45deg, transparent, rgba(205, 222, 232, 0.4)) border-box;
+}
+
+body.app #errorOverlay .overlay-actions button:hover {
+  color: #fff;
+  background: linear-gradient(rgba(65, 82, 96, 0.9), rgba(65, 82, 96, 0.9)) padding-box,
+    linear-gradient(45deg, transparent, rgba(220, 235, 242, 0.55)) border-box;
+}
+
+body.app :is(#restore, #glrestore, #errorRestore) a {
+  color: #e4e9ed !important;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  text-shadow: none;
+}
+
+/* Credits remain readable in both themes. */
+.kp-credits {
+  padding: 6px 2px 14px;
+  color: var(--studio-text);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.kp-credits p { margin: 7px 0; }
+.kp-credits h4 {
+  margin: 16px 0 5px;
+  color: var(--studio-muted);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.kp-credits a { color: #a8c7d7; user-select: auto; touch-action: manipulation; }
+body.light .kp-credits a { color: #3b718a; }
+.kp-credits a.menu-button { text-decoration: none; user-select: auto; touch-action: manipulation; }
+.kp-credits .kp-note {
+  padding: 11px 12px;
+  border-radius: 11px;
+  background: var(--studio-control);
+  color: var(--studio-text);
+}
+
+body ::-webkit-scrollbar { width: 8px; }
+body ::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: rgba(170, 190, 201, 0.35);
+  background-clip: padding-box;
+}
+
+:focus-visible {
+  outline: 2px solid #a8c8d8;
+  outline-offset: 2px;
+}
+
+/* The floating lists can be taller than a phone in either orientation. */
+@media (max-width: 650px), (max-height: 750px) {
+  body.app :is(#guides, #font) {
+    max-height: calc(100vh - 100px);
+    overflow: hidden;
+  }
+
+  body.app :is(#guides_inner, #font_inner) {
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body.app :is(#guides_inner, #font_inner,
+    #guides_inner .container-button, #font_inner .container-button) {
+    touch-action: pan-y;
+  }
+}
+
+/* On a short landscape screen the vertical rail cannot fit its controls.
+   Reuse the app's existing compact toolbar instead of clipping undo/redo. */
+@media (min-width: 651px) and (max-height: 535px) {
+  body.app:not(.ar) #second_row { display: none; }
+  body.app:not(.ar) #third_row { display: flex; justify-content: center; }
+  body.app #guides { max-height: calc(100vh - 170px); }
+  body.app #guides_inner { max-height: calc(100vh - 230px); }
+}
+
+@media (max-width: 650px) {
+  body.app #nav_toggle_sm {
+    top: 88px;
+    left: 8px;
+    width: 50px;
+    height: 44px;
+    padding: 0;
+    align-items: center;
+    border-radius: 14px;
+  }
+
+  body.app .right #nav_toggle_sm {
+    left: auto;
+    right: 8px;
+  }
+
+  /* The guide is fixed to the frosted nav group; the font panel is fixed
+     to the viewport. Keep both below the toolbar and inside the screen. */
+  body.app #guides {
+    top: 82px;
+    left: 0;
+    right: auto;
+  }
+
+  body.app #font {
+    top: 90px;
+    left: calc((100vw - 240px) / 2);
+    right: auto;
+  }
+
+  /* Leave room for the bottom touch toolbar while guides are open. */
+  body.app #guides { max-height: calc(100vh - 180px); }
+  body.app #guides_inner { max-height: calc(100vh - 240px); }
+
+  body.app #modals,
+  body.app #ui.right ~ #modals {
+    left: max(8px, calc((100vw - 300px) / 2));
+    right: auto;
+    bottom: max(10px, env(safe-area-inset-bottom));
+  }
+}
+
+@media (min-width: 651px) and (max-width: 850px) {
+  body.app .nav-group .btn { width: 38px; margin: 3px 1px; }
+}
+
+@media (max-width: 380px) {
+  #first_row { margin-left: 54px; }
+  #first_row.right { margin-left: 0; margin-right: 54px; }
+  body.app .nav-group,
+  body.app .right .nav-group {
+    margin: 7px 0 0 4px;
+    padding: 2px;
+    border-radius: 14px;
+    box-shadow: var(--studio-shadow);
+  }
+  body.app .right .nav-group { margin: 7px 4px 0 0; }
+  body.app .nav-group .btn { width: 38px; margin: 3px 1px; }
+  body.app #logo_btn { left: 4px; }
+  body.app #logo_btn.right { left: auto; right: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.app .btn,
+  body.app .pebble,
+  body.app .menu-button,
+  body.app .container-button { transition: none; }
+}

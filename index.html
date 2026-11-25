@@ -5015,21 +5015,12 @@
     </style>
 
     <script type="text/javascript">
-        (function () {
-            document.documentElement.style.visibility = 'hidden';
-            try {
-                if (self !== top) {
-                    top.location = self.location;
-                } else {
-                    document.documentElement.style.visibility = 'visible';
-                }
-            } catch (e) {
-                document.documentElement.style.visibility = 'hidden';
-            }
-        })();
+        // Allow the app to render in an embedded preview as well as on its own.
+        document.documentElement.style.visibility = 'visible';
     </script>
 
     <link rel="stylesheet" href="kresplus.css">
+    <script defer src="kresplus-ui.js"></script>
 </head>
 
 <body class="app notranslate" translate="no">
@@ -7816,7 +7807,7 @@
 
         <div class="msg">
             An unexpected application error occurred.<br>
-            Please send the error details to <a href="/cdn-cgi/l/email-protection#1e7d71706a7f7d6a30756c7b6d757f5e79737f7772307d7173" id="errorEmailLink" style="color: #64b5f6; text-decoration: underline;"><span class="__cf_email__" data-cfemail="14777b7a607577603a7f6671677f75547379757d783a777b79">[email&#160;protected]</span></a>.
+            Please send the error details to <a href="mailto:contact.kreska@gmail.com" id="errorEmailLink" style="color: #64b5f6; text-decoration: underline;">contact.kreska@gmail.com</a>.
         </div>
         <div id="errorDetails" class="error-details"></div>
         <div class="overlay-actions">
@@ -7844,7 +7835,7 @@
 
     
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
 
         var version = "1.6.11";
         var assets_version = "1.0";
@@ -8076,7 +8067,6 @@
         loadScriptsInOrder();
     </script>
 
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"2076d10c2117406386a429bc6d1088db","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 
 </html>

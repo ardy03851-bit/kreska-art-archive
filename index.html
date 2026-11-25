@@ -9,30 +9,30 @@
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
 
-    <title>KRESKA.art - Drawing and Painting App</title>
+    <title>kres+ - Drawing and Painting App (mod of KRESKA.art)</title>
     <meta name="description"
-        content="Create stunning digital art with KRESKA.art using beautiful brushes and a simple interface. Ideal for artists of all levels on any device.">
+        content="Create stunning digital art with kres+ using beautiful brushes and a simple interface. Ideal for artists of all levels on any device.">
     <meta name="keywords"
-        content="KRESKA.art, drawing app, painting app, digital art, creativity, pro create, online painting, free, drawing, painting, painting application, like procreate, procreate alternative">
+        content="kres+, KRESKA.art mod, drawing app, painting app, digital art, creativity, pro create, online painting, free, drawing, painting, painting application, like procreate, procreate alternative">
 
-    <meta property="og:title" content="KRESKA.art - Drawing and Painting App">
+    <meta property="og:title" content="kres+ - Drawing and Painting App (mod of KRESKA.art)">
     <meta property="og:description"
-        content="Create stunning digital art with KRESKA.art using beautiful brushes and a simple interface. Ideal for artists of all levels on any device.">
-    <meta property="og:image" content="https://kreska.art/kreska.png">
-    <meta property="og:url" content="https://kreska.art/app/">
+        content="Create stunning digital art with kres+ using beautiful brushes and a simple interface. Ideal for artists of all levels on any device.">
+    
+    
     <meta property="og:type" content="website">
 
     <meta name="author" content="Michal Bednarczyk">
     <meta name="robots" content="index, follow">
     <meta name="google" content="notranslate">
 
-    <link rel="canonical" href="https://kreska.art/app/">
+    
 
     <link rel="manifest" href="./site.webmanifest">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="KRESKA.art">
+    <meta name="apple-mobile-web-app-title" content="kres+">
 
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
@@ -5029,6 +5029,7 @@
         })();
     </script>
 
+    <link rel="stylesheet" href="kresplus.css">
 </head>
 
 <body class="app notranslate" translate="no">
@@ -5036,29 +5037,7 @@
 
     <svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
-            <symbol id="logo" viewbox="0 0 24 24">
-                <path d="M0 0h24v24H0z" fill="none" />
-                <g>
-                    <path
-                        d="m10.217 1.5132c-0.47429 0-0.65345 0.21742-0.6523 0.49705l-7.84e-5 14.135c0.00699 0.26918 0.18003 0.49665 0.65432 0.49665 0.46074 0 0.6507-0.22817 0.6507-0.49745v-2.0299l1.2737-1.1911 2.182 3.3662c0.16262 0.26928 0.48746 0.45576 0.92109 0.29005 0.43363-0.16571 0.42008-0.4765 0.24391-0.74578l-2.4796-3.7285 2.2357-2.0404c0.24392-0.22785 0.35268-0.52843-0.0132-0.76664-0.37943-0.23821-0.75893-0.093133-0.98929 0.12436l-3.1845 3.014c-0.05419 0.04146-0.18975 0.18655-0.18975 0.18655l-0.0023-6.8332h1.6937l1.3688 2.7135c0.12196 0.24856 0.40674 0.43526 0.82682 0.32134 0.4472-0.12429 0.47419-0.425 0.35223-0.67357l-1.3283-2.6305c0.82662-0.32107 1.2741-1.0046 1.2741-1.8021v-0.30048c0-1.1496-0.86736-1.9056-2.5884-1.9056zm0.6503 0.95278h1.5991c0.89438 0 1.2737 0.35208 1.2737 0.95278v0.30048c0 0.62142-0.37933 1.1185-1.2737 1.1185h-1.5991z" />
-                    <path
-                        d="m7.0055 8.5145c0.16261 0.26928 0.48784 0.45571 0.92148 0.29 0.43363-0.16571 0.42008-0.47642 0.24392-0.7457l-2.4799-3.7285 2.2359-2.0403c0.24392-0.22785 0.35232-0.52821-0.013586-0.76642-0.37943-0.23821-0.75886-0.093213-0.98923 0.12428l-3.1845 3.0139c-0.054187 0.041424-0.13551 0.12428-0.18972 0.18643v-2.9414c0-0.27964-0.18972-0.49714-0.65045-0.49714-0.4743 0-0.65046 0.2175-0.65046 0.49714v6.4628c0 0.26929 0.17616 0.49714 0.65046 0.49714 0.46074 0 0.65045-0.22785 0.65045-0.49714v-2.03l1.2738-1.1911z" />
-                    <path
-                        d="m21.383 8.763c0.35233 0 0.62336-0.13464 0.62336-0.47642s-0.27103-0.47642-0.62336-0.47642h-3.2794v-2.3096h2.6289c0.35234 0 0.62336-0.13464 0.62336-0.47642 0-0.33142-0.27102-0.47642-0.62336-0.47642h-2.6289v-2.0818h3.2794c0.35233 0 0.62336-0.13464 0.62336-0.47642 0-0.34178-0.27103-0.47642-0.62336-0.47642h-3.9298c-0.4743 0-0.65046 0.2175-0.65046 0.49714v6.2556c0 0.27964 0.17616 0.49713 0.65046 0.49713z" />
-                    <path
-                        d="m5.3522 16.642c1.721 0 2.5747-0.75606 2.5747-1.916v-0.34178c0-0.88034-0.52849-1.5432-1.5584-1.8228l-2.0191-0.54892c-0.47429-0.13464-0.70465-0.42464-0.70465-0.86998v-0.145c0-0.6007 0.39298-0.85963 1.2874-0.85963h0.46074c0.54205 0 0.90793 0.17607 0.90793 0.56963 0 0.27964 0.17617 0.49714 0.65046 0.49714 0.47428 0 0.65045-0.2175 0.65045-0.49714 0-1.0771-0.84017-1.5225-2.2088-1.5225h-0.46074c-1.721 0-2.5883 0.65249-2.5883 1.8125v0.145c0 0.69392 0.28457 1.4603 1.4635 1.7814l2.1953 0.59035c0.40654 0.11392 0.62336 0.43499 0.62336 0.86998v0.34178c0 0.61106-0.37944 0.9632-1.2738 0.9632h-0.89438c-0.5556 0-0.90793-0.17607-0.90793-0.57998 0-0.27964-0.17616-0.49714-0.65045-0.49714-0.47429 0-0.65046 0.2175-0.65046 0.49714 0 1.0771 0.84017 1.5328 2.2088 1.5328z" />
-                    <path
-                        d="m21.016 16.28c0.09678 0.24857 0.33876 0.42464 0.68961 0.33142 0.35085-0.10357 0.45973-0.37285 0.36295-0.62142l-2.4197-6.442c-0.096791-0.24857-0.25407-0.36249-0.58073-0.36249h-0.0605c-0.33876 0-0.48394 0.11392-0.58072 0.36249l-2.4197 6.442c-0.09679 0.25892-0.01212 0.51785 0.36296 0.62142 0.36294 0.09321 0.59282-0.08286 0.6896-0.33142l0.66542-1.7607h2.6132zm-1.0163-2.7239h-1.9236l0.7622-2.0403c0.08468-0.22786 0.12098-0.34178 0.18147-0.59035h0.01213c0.0605 0.24857 0.09678 0.36249 0.18148 0.59035z" />
-                    <path
-                        d="m3.7667 22.098c0-0.25216-0.20327-0.44917-0.75887-0.44917-0.58269 0-0.75886 0.19701-0.75886 0.44917v0.0788c0 0.25217 0.17617 0.44129 0.75886 0.44129 0.5556 0 0.75887-0.18912 0.75887-0.44129z" />
-                    <path
-                        d="m9.4582 22.539c0.46074 0 0.65046-0.16548 0.65046-0.37824v-2.4822c0-0.73285-0.84017-1.2372-2.2088-1.2372h-1.45c-0.35232 0-0.6369 0.09455-0.6369 0.3546 0 0.26005 0.28457 0.3546 0.6369 0.3546h1.45c0.56915 0 0.93503 0.14973 0.93503 0.54373v0.17336h-1.5313c-1.3687 0-2.1411 0.3546-2.1411 1.1663v0.33885c0 0.8274 0.77242 1.1662 2.1411 1.1662zm-0.62335-0.7092h-1.5313c-0.55559 0-0.86728-0.14184-0.86728-0.45705v-0.33097c0-0.30733 0.31168-0.46493 0.86728-0.46493h1.5313z" />
-                    <path
-                        d="m12.06 22.24c0 0.20488 0.16261 0.37824 0.6369 0.37824 0.46074 0 0.6369-0.17336 0.6369-0.37824v-3.089h1.1383c0.5556 0 0.92148 0.14973 0.92148 0.44917 0 0.21276 0.16262 0.37825 0.6369 0.37825 0.4743 0 0.6369-0.16549 0.6369-0.37825 0-0.81952-0.82662-1.1584-2.1953-1.1584h-1.7752c-0.47429 0-0.6369 0.16548-0.6369 0.37824z" />
-                    <path
-                        d="m21.343 22.539c0.35232 0 0.62335-0.10244 0.62335-0.3546 0-0.26004-0.27103-0.3546-0.62335-0.3546h-0.81307c-0.89437 0-1.3145-0.37036-1.3145-0.85893v-1.8203h1.7345c0.35233 0 0.62335-0.09455 0.62335-0.3546 0-0.26004-0.27102-0.3546-0.62335-0.3546h-1.7345v-0.72498c0-0.21276-0.16262-0.37824-0.6369-0.37824-0.47429 0-0.6369 0.16548-0.6369 0.37824v3.2545c0 0.89833 0.86727 1.5681 2.5883 1.5681z" />
-                </g>
-            </symbol>
+            <symbol id="logo" viewbox="0 0 24 24"><text x="12" y="15.5" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-weight="700" font-size="9" textLength="23" lengthAdjust="spacingAndGlyphs" fill="currentColor">kres+</text></symbol>
             <symbol id="icon-rotate" viewBox="0 0 24 24">
                 <path
                     d="m12 2v2a8 8 0 0 0-8 8 8 8 0 0 0 2.3438 5.6562l1.4297-1.4297a6 6 0 0 1-1.7734-4.2266 6 6 0 0 1 6-6v2l5-3-5-3zm5.6562 4.3438-1.416 1.416a6 6 0 0 1 1.7598 4.2402 6 6 0 0 1-6 6v-2l-5 3 5 3v-2a8 8 0 0 0 8-8 8 8 0 0 0-2.3438-5.6562z" />
@@ -6317,7 +6296,7 @@
                         </svg>
                     </div>
                     <div id="welcome_inner" class="notouch">
-                        Welcome to kreska.art
+                        Welcome to kres+<br><small>A modded, remade version of KRESKA.art by Michal Bednarczyk. See Menu &rarr; About &amp; Credits.</small>
                     </div>
                 </div>
                 
@@ -7010,45 +6989,24 @@
 
 
                                 <div class="cat_container">
-                                    <div data-do="cat_button" class="collapsible active">About
+                                    <div data-do="cat_button" class="collapsible active">About &amp; Credits
                                     </div>
                                     <div class="cat_inner" style="display: block;">
-                                        <div class="menu-button" data-do="kreska_website">
-                                            <span>
-                                                KRESKA.art website
-                                            </span>
-                                            <span>
-                                                <svg class="icon link">
-                                                    <use xlink:href="#icon-open-in-new"></use>
-                                                </svg>
-                                            </span>
+                                        <div class="kp-credits">
+<p><b>kres+</b> &mdash; modded &amp; remade version of KRESKA.art</p>
+<h4>Credits</h4>
+<p class="kp-note">kres+ is an unofficial, fan-made mod and remake. It is not affiliated with or endorsed by the original author. All drawing engine, brushes and core code were created by <b>Michal Bednarczyk</b> for KRESKA.art. This version only changes the branding and visual style.</p>
+<h4>Original creator</h4>
+<p>Michal Bednarczyk</p>
+<a class="menu-button" href="https://kreska.art/" target="_blank" rel="noopener">Original KRESKA.art website &#8599;</a>
+<h4>Support the original creator</h4>
+<p>Donations go to the original author, not to kres+.</p>
+<div class="menu-button donate" data-do="donate"><span>Donate to the original creator</span> <span><svg class="icon link"><use xlink:href="#icon-open-in-new"></use></svg></span></div>
+<br>
+<p>Original app Copyright&copy; kreska.art, Michal Bednarczyk. All rights reserved by the original author.</p>
+<p>kres+ modifications: visual restyle and rebrand only.</p>
+</div>
                                         </div>
-                                        <div style="text-align: center;">
-                                            <br>
-                                            <p>kreska.art </p>
-
-                                            <p>Michal Bednarczyk</p>
-                                            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="41222e2f352022356f2a3324322a2001262c20282d6f222e2c">[email&#160;protected]</a></p>
-                                            <br>
-                                            <p>Support the author</p>
-                                            <div class="menu-button donate" data-do="donate">
-                                                <span>
-                                                    Donate
-                                                </span>
-                                                <span>
-                                                    <svg class="icon link">
-                                                        <use xlink:href="#icon-open-in-new"></use>
-                                                    </svg>
-                                                </span>
-
-                                            </div>
-                                            <br>
-                                            <p>Copyright© kreska.art</p>
-                                            <p>All Rights Reserved</p>
-                                        </div>
-
-                                        
-                                    </div>
                                     
                                 </div>
 

@@ -1,0 +1,55 @@
+/* kres+ — glassmorphic skin with thin gradient outlines (mod of KRESKA.art) */
+:root{
+  --kp-grad: linear-gradient(135deg,#6ee7f9 0%,#a78bfa 50%,#f472b6 100%);
+  --kp-glass: rgba(30,32,48,.42);
+  --kp-glass-hi: rgba(255,255,255,.08);
+  --kp-blur: blur(18px) saturate(160%);
+}
+body, body.app{
+  background-color:#10121c !important;
+  background-image:
+    radial-gradient(900px 600px at 15% 10%,rgba(110,231,249,.18),transparent 60%),
+    radial-gradient(800px 600px at 90% 20%,rgba(167,139,250,.20),transparent 60%),
+    radial-gradient(900px 700px at 50% 100%,rgba(244,114,182,.16),transparent 60%) !important;
+  background-repeat:no-repeat !important;
+}
+/* gradient hairline ring (mask technique keeps the glass see-through) */
+.menu-button:not(.donate)::before,.container-button::before,.modal::before,#welcome::before,
+#modal_menu::before,#colorfloat::before,#guides_container::before,#font_container::before,#imagefloat::before,.menu-button.donate::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+  background:var(--kp-grad);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+}
+.menu-button,.container-button{position:relative;}
+#welcome,.modal,#modal_menu,#colorfloat,#guides_container,#font_container,#imagefloat{
+  background:var(--kp-glass) !important;border:0 !important;border-radius:18px !important;
+  -webkit-backdrop-filter:var(--kp-blur);backdrop-filter:var(--kp-blur);
+  box-shadow:0 8px 32px rgba(0,0,0,.35), inset 0 1px 0 var(--kp-glass-hi) !important;
+}
+.menu-button:not(.primary):not(.secondary):not(.tertiary):not(.donate),
+.container-button:not(.primary):not(.secondary){
+  background:rgba(255,255,255,.06) !important;border:0 !important;border-radius:999px !important;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+}
+.menu-button.primary,.menu-button.secondary,.menu-button.tertiary,.primary{
+  background:linear-gradient(135deg,rgba(79,70,229,.32),rgba(124,58,237,.28)) !important;
+  border:0 !important;border-radius:999px !important;
+}
+.menu-button.donate{background:rgba(123,176,224,.12) !important;border:0 !important;border-radius:999px !important;}
+.btn{transition:background .25s ease;}
+.menu-button:hover{box-shadow:0 0 18px rgba(167,139,250,.35);}
+.btn{border-radius:14px !important;}
+.btn:hover{background:rgba(255,255,255,.07);}
+.collapsible{
+  color:#c4b5fd !important;border-bottom:1px solid transparent !important;
+  border-image:var(--kp-grad) 1 !important;
+}
+/* credits */
+.kp-credits{text-align:center;padding:6px 4px 14px;font-size:14px;line-height:1.5;color:#e6e6f0;}
+.kp-credits p{margin:6px 0;}
+.kp-credits a.menu-button{display:block;text-decoration:none;color:#fff;user-select:auto;touch-action:manipulation;}
+.kp-credits a{color:#a5f3fc;user-select:auto;touch-action:manipulation;}
+.kp-credits .kp-note{font-size:13px;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(167,139,250,.55);color:#e6e6f0;}
+.kp-credits h4{margin:14px 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;}
+::-webkit-scrollbar-thumb{background:linear-gradient(#a78bfa,#6ee7f9) !important;border-radius:8px;}

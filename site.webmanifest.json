@@ -1,0 +1,72 @@
+{
+  "name": "KRESKA.art - Drawing and Painting App",
+  "short_name": "KRESKA.art",
+  "description": "Create stunning digital art with KRESKA.art using beautiful brushes and a simple interface. Ideal for artists of all levels on any device.",
+  "id": "/app/",
+  "start_url": "/app/",
+  "scope": "/app/",
+  "protocol_handlers": [{
+    "protocol": "web+kreska",
+    "url": "/app/?ref=%s"
+  }],
+  "display": "standalone",
+  "background_color": "#2d2d2d",
+  "theme_color": "#2d2d2d",
+  "icons": [{
+      "src": "./16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "./32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "./180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "./192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "./512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [{
+      "src": "./kreska-screenshot-mobile.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "./kreska-screenshot-desktop.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "file_handlers": [{
+    "action": "/app/",
+    "accept": {
+      "application/vnd.kreska": [".kreska"]
+    },
+    "icons": [{
+      "src": "./192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }]
+  }]
+}

@@ -1,0 +1,11 @@
+<svg width="13.292mm" height="81.323mm" version="1.1" viewBox="0 0 13.292 81.323" xmlns="http://www.w3.org/2000/svg">
+ <circle cx="6.6507" cy="19.7" r="3.79" fill="#b3b3b3" fill-opacity=".70143" fill-rule="evenodd" stroke-width=".76761"/>
+ <circle cx="6.6507" cy="9.7349" r="3.79" fill="#b3b3b3" fill-rule="evenodd" stroke-width=".76761"/>
+ <g fill="#b2b2b2" fill-rule="evenodd" stroke-width=".76761">
+  <circle cx="6.6507" cy="29.664" r="3.79" fill-opacity=".50307"/>
+  <circle cx="6.6507" cy="39.629" r="3.79" fill-opacity=".40286"/>
+  <ellipse cx="6.6507" cy="49.594" rx="3.79" ry="3.79" fill-opacity=".3047"/>
+  <circle cx="6.6507" cy="59.558" r="3.79" fill-opacity=".19836"/>
+  <circle cx="6.6507" cy="69.523" r="3.79" fill-opacity=".096114"/>
+ </g>
+</svg>
